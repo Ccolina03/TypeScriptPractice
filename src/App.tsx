@@ -19,6 +19,12 @@ function App() {
       const newBusList = [...busList]
       newBusList.pop();
       setBusList(newBusList);
+   };
+
+   const SpecItemDeleteHandler = (busId: string) => {
+      setBusList((prevBusList) => {
+        return prevBusList.filter((item)=> item.id !== busId)
+      })
    }
 
 
@@ -26,7 +32,7 @@ function App() {
     <div>
       <NewBusRoute onAddRoute={AddRouteHandler} /> 
       <DeleteBusRoute onDeleteRoute={DeleteRouteHandler}/>
-      <BusList onBusData={busList}/>
+      <BusList onBusData={busList} onRemoveBus={SpecItemDeleteHandler}/>
     </div>
   );
 }
